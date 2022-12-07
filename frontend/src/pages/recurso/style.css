@@ -1,0 +1,25 @@
+.containerNivel {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.containerNivel * {
+    margin: 0 2px;
+}
+
+.containerPergunta {
+    text-align: center;
+}
+
+.containerPergunta span {
+    color: black;
+    margin: 0 10px;
+    font-size: 35px;
+}
+
+.resposta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

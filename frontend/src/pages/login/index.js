@@ -7,7 +7,7 @@ export default function Login() {
             <h1>Login</h1>
 
             <form action='/login' method='post'>
-                <div className="containerLogin">
+                <div className="container">
                     <label for="email">Email</label>
                     <input className="form-control mb-2" type="email" id="email" placeholder="Insira o seu e-mail" />
                     <label for="senha">Senha</label>

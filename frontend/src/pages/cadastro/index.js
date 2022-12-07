@@ -9,7 +9,7 @@ export default function Cadastro() {
             </div>
 
             <form action='/login' method='post'>
-                <div className="containerCadastro">
+                <div className="container">
                     <label for="nome">Nome</label>
                     <input className="form-control" type="text" id="nome" placeholder="Insira o seu nome" />
                     <label for="login">Login</label>
