@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Navigate } from "react-router-dom";
 import api from '../../services/api';
 
 import './style.css'
@@ -9,6 +10,8 @@ export default function Cadastro() {
     const [login, setLogin] = useState('')
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
+    const [estado, setEstado] = useState(false);
+    const [msg, setMsg] = useState(false);
 
     function salvarUsuario() {
         api
@@ -20,8 +23,10 @@ export default function Cadastro() {
             })
             .then((response) => {
                 console.log(response.data);
+                setEstado(true)
             })
             .catch((error) => {
+                setMsg(true)
                 console.log(error);
             })
     }
@@ -30,11 +35,22 @@ export default function Cadastro() {
     return (
         <div className="cadastro">
 
+            {estado === true ? (<Navigate push to="/" />) : null}
+
+            {msg === true ?
+                (<div className="alert alert-danger w-25 mx-auto" role="alert">
+                    Erro ao cadastrar o usuário!
+                </div>)
+                :
+                null
+            }
+
             <div className='titulo'>
                 <h1>Cadastro</h1>
             </div>
 
             <div className="container">
+
                 <label htmlFor="nome">Nome</label>
                 <input className="form-control" type="text" id="nome" name="nome" value={nome} onChange={(evt) => setNome(evt.target.value)} placeholder="Insira o seu nome" />
                 <label htmlFor="login">Login</label>
