@@ -8,7 +8,7 @@ export default function Recurso() {
     const [valor2, setValor2] = useState(0);
     const [operacao, setOperacao] = useState('+');
     const [dificuldade, setDificuldade] = useState('fácil');
-    const [resposta, setResposta] = useState('');
+    const [resposta, setResposta] = useState(null);
     const [msg, setMsg] = useState('');
 
     function mudarValores() {
@@ -52,7 +52,7 @@ export default function Recurso() {
         if (respostaCerta == resposta) {
             acerto = true;
             setMsg('Resposta Correta!')
-        } else {
+        } else if (resposta != null) {
             acerto = false;
             setMsg('Resposta Errada!')
         }
@@ -68,6 +68,7 @@ export default function Recurso() {
                 console.log(response.data);
             })
             .catch((error) => {
+                setMsg('Resposta Inválida!')
                 console.log(error);
             })
     }
