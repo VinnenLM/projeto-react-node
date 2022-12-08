@@ -1,6 +1,32 @@
+import React, { useState } from "react";
+import api from '../../services/api';
+
 import './style.css'
 
 export default function Cadastro() {
+
+    const [nome, setNome] = useState('')
+    const [login, setLogin] = useState('')
+    const [email, setEmail] = useState('')
+    const [senha, setSenha] = useState('')
+
+    function salvarUsuario() {
+        api
+            .post("/usuarios", {
+                nome: nome,
+                login: login,
+                email: email,
+                senha: senha
+            })
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
+
+
     return (
         <div className="cadastro">
 
@@ -8,21 +34,19 @@ export default function Cadastro() {
                 <h1>Cadastro</h1>
             </div>
 
-            <form action='/login' method='post'>
-                <div className="container">
-                    <label for="nome">Nome</label>
-                    <input className="form-control" type="text" id="nome" placeholder="Insira o seu nome" />
-                    <label for="login">Login</label>
-                    <input className="form-control" type="text" id="login" placeholder="Insira o seu login" />
-                    <label for="email">Email</label>
-                    <input className="form-control" type="email" id="email" placeholder="Insira o seu e-mail" />
-                    <label for="senha">Senha</label>
-                    <input className="form-control" type="password" id="senha" placeholder="******" />
-                    <label for="confirmarSenha">Confirmar Senha</label>
-                    <input className="form-control" type="password" id="confirmarSenha" placeholder="******" />
-                    <button id="entrar" className="btn btn-primary mt-3">Entrar</button>
-                </div>
-            </form>
+            <div className="container">
+                <label htmlFor="nome">Nome</label>
+                <input className="form-control" type="text" id="nome" name="nome" value={nome} onChange={(evt) => setNome(evt.target.value)} placeholder="Insira o seu nome" />
+                <label htmlFor="login">Login</label>
+                <input className="form-control" type="text" id="login" name="login" value={login} onChange={(evt) => setLogin(evt.target.value)} placeholder="Insira o seu login" />
+                <label htmlFor="email">Email</label>
+                <input className="form-control" type="email" id="email" name="email" value={email} onChange={(evt) => setEmail(evt.target.value)} placeholder="Insira o seu e-mail" />
+                <label htmlFor="senha">Senha</label>
+                <input className="form-control" type="password" id="senha" name="senha" value={senha} onChange={(evt) => setSenha(evt.target.value)} placeholder="******" />
+                <label htmlFor="confirmarSenha">Confirmar Senha</label>
+                <input className="form-control" type="password" id="confirmarSenha" placeholder="******" />
+                <button onClick={salvarUsuario} className="btn btn-primary mt-3">Cadastrar</button>
+            </div>
 
         </div>
     )
