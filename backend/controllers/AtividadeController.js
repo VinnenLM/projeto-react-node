@@ -2,7 +2,7 @@ const database = require('../models')
 
 class AtividadeController {
 
-  static async listarTodosAtividades(req, res) {
+  static async listarTodasAtividades(req, res) {
     try {
       const todasAtividades = await database.Atividades.findAll()
       return res.status(200).json(todasAtividades)
