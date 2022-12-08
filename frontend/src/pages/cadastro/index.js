@@ -50,7 +50,6 @@ export default function Cadastro() {
             </div>
 
             <div className="container">
-
                 <label htmlFor="nome">Nome</label>
                 <input className="form-control" type="text" id="nome" name="nome" value={nome} onChange={(evt) => setNome(evt.target.value)} placeholder="Insira o seu nome" />
                 <label htmlFor="login">Login</label>
