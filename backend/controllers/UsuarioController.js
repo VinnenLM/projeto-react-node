@@ -12,6 +12,20 @@ class UsuarioController {
     }
   }
 
+  static async buscarUsuario(req, res) {
+    const { id } = req.params
+    try {
+      const usuario = await database.Usuarios.findOne({
+        where: {
+          id: Number(id)
+        }
+      })
+      return res.status(200).json(usuario)
+    } catch (error) {
+      return res.status(500).json(error.message)
+    }
+  }
+
   static async cadastrarUsuario(req, res) {
     const novoUsuario = req.body
     try {
