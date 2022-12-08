@@ -9,6 +9,7 @@ export default function Recurso() {
     const [operacao, setOperacao] = useState('+');
     const [dificuldade, setDificuldade] = useState('fácil');
     const [resposta, setResposta] = useState('');
+    const [msg, setMsg] = useState('');
 
     function mudarValores() {
         if (dificuldade === 'fácil') {
@@ -50,8 +51,10 @@ export default function Recurso() {
 
         if (respostaCerta == resposta) {
             acerto = true;
+            setMsg('Resposta Correta!')
         } else {
-            acerto = false
+            acerto = false;
+            setMsg('Resposta Errada!')
         }
 
         api
@@ -76,19 +79,30 @@ export default function Recurso() {
 
             <div className="containerNivel">
 
-                <input
-                    type="radio"
-                    value="fácil"
-                    checked={dificuldade === "fácil"}
-                    onChange={() => setDificuldade('fácil')} />
-                <label htmlFor="dificuldade"><strong>Fácil</strong></label>
+                {msg !== '' ?
+                    (<div className="alert alert-warning w-25 mx-auto" role="alert">
+                        {msg}
+                    </div>)
+                    :
+                    null
+                }
 
-                <input
-                    type="radio"
-                    value="difícil"
-                    checked={dificuldade === "difícil"}
-                    onChange={() => setDificuldade('difícil')} />
-                <label htmlFor="dificuldade"><strong>Difícil</strong></label>
+                <div className="radioNivel">
+                    <input
+                        type="radio"
+                        value="fácil"
+                        checked={dificuldade === "fácil"}
+                        onChange={() => setDificuldade('fácil')} />
+                    <label htmlFor="dificuldade"><strong>Fácil</strong></label>
+
+                    <input
+                        type="radio"
+                        value="difícil"
+                        checked={dificuldade === "difícil"}
+                        onChange={() => setDificuldade('difícil')} />
+                    <label htmlFor="dificuldade"><strong>Difícil</strong></label>
+
+                </div>
 
             </div>
 

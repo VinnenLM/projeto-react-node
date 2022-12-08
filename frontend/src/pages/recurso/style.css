@@ -1,11 +1,16 @@
 .containerNivel {
     margin-bottom: 30px;
-    display: flex;
     justify-content: center;
 }
 
 .containerNivel * {
     margin: 0 2px;
+}
+
+.radioNivel {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
 }
 
 .containerPergunta {
