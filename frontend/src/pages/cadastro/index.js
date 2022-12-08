@@ -31,7 +31,6 @@ export default function Cadastro() {
             })
     }
 
-
     return (
         <div className="cadastro">
 

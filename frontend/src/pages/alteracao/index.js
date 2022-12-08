@@ -29,7 +29,7 @@ export default function Alterar() {
 
     function atualizarDados() {
         api
-            .put("/usuarios", {
+            .put(`/usuarios/${1}`, {
                 nome: nome,
                 login: login,
                 email: email,
