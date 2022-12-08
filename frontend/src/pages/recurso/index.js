@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import api from "../../services/api";
 import './style.css'
 
 export default function Recurso() {
@@ -7,6 +8,7 @@ export default function Recurso() {
     const [valor2, setValor2] = useState(0);
     const [operacao, setOperacao] = useState('+');
     const [dificuldade, setDificuldade] = useState('fácil');
+    const [resposta, setResposta] = useState('');
 
     function mudarValores() {
         if (dificuldade === 'fácil') {
@@ -38,6 +40,33 @@ export default function Recurso() {
     function gerarQuestao() {
         mudarOperacao();
         mudarValores();
+    }
+
+    function salvarAtividade() {
+
+        let questao = valor1 + operacao + valor2;
+        let respostaCerta = eval(questao);
+        let acerto = false;
+
+        if (respostaCerta == resposta) {
+            acerto = true;
+        } else {
+            acerto = false
+        }
+
+        api
+            .post("/atividades", {
+                questao: questao,
+                nivel: dificuldade,
+                resposta: resposta,
+                acerto: acerto
+            })
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
     }
 
     return (
@@ -77,8 +106,8 @@ export default function Recurso() {
 
             <div className="container mt-5">
                 <div className="resposta">
-                    <input className="form-control mb-2" type="email" id="email" placeholder="Insira a sua resposta" />
-                    <button className="btn btn-primary mt-3">Responder</button>
+                    <input className="form-control mb-2" type="email" id="resposta" name="resposta" value={resposta} onChange={(evt) => setResposta(evt.target.value)} placeholder="Insira a sua resposta" />
+                    <button className="btn btn-primary mt-3" onClick={salvarAtividade}>Responder</button>
                 </div>
             </div>
 
