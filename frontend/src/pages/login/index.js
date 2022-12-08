@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './style.css'
 
 export default function Login() {
@@ -13,7 +14,7 @@ export default function Login() {
                 <input className="form-control" type="password" id="senha" placeholder="******" />
                 <div className="botoes">
                     <button className="btn btn-primary mt-3">Entrar</button>
-                    <button className="btn btn-secondary mt-3">Cadastrar-se</button>
+                    <Link to="/cadastro" className="btn btn-secondary mt-3">Cadastrar-se</Link>
                 </div>
             </div>
 

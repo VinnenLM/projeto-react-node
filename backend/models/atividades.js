@@ -14,10 +14,22 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Atividades.init({
-    questao: DataTypes.STRING,
-    nivel: DataTypes.STRING,
-    resposta: DataTypes.STRING,
-    acerto: DataTypes.BOOLEAN
+    questao: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    nivel: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    resposta: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    acerto: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false
+    }
   }, {
     sequelize,
     modelName: 'Atividades',
