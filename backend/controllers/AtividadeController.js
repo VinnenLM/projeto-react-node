@@ -12,6 +12,20 @@ class AtividadeController {
     }
   }
 
+  static async listarAtividadesPorUsuario(req, res) {
+    const { id } = req.params
+    try {
+      const atividades = await database.Atividades.findAll({
+        where: {
+          userId: Number(id)
+        }
+      })
+      return res.status(200).json(atividades)
+    } catch (error) {
+      return res.status(500).json(error.message)
+    }
+  }
+
   static async salvarAtividade(req, res) {
     const novaAtividade = req.body
     try {
