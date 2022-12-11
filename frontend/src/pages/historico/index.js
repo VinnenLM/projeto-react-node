@@ -29,7 +29,7 @@ export default function Historico() {
             .catch((error) => {
                 console.log(error);
             })
-    }, [])
+    }, [idUsuario])
 
     return (
         <div className="cadastro">
@@ -48,23 +48,23 @@ export default function Historico() {
                     <tbody>
                         <tr>
                             <td>Atividades Realizadas</td>
-                            <td>{countAtividades}</td>
+                            <td class="text-center">{countAtividades}</td>
                         </tr>
                         <tr>
                             <td>Acertos (fácil)</td>
-                            <td>{countAcertosFacil}</td>
+                            <td class="text-center">{countAcertosFacil}</td>
                         </tr>
                         <tr>
                             <td>Erros (Fácil)</td>
-                            <td>{countErrosFacil}</td>
+                            <td class="text-center">{countErrosFacil}</td>
                         </tr>
                         <tr>
                             <td>Acertos (Difícil)</td>
-                            <td>{countAcertosDificil}</td>
+                            <td class="text-center">{countAcertosDificil}</td>
                         </tr>
                         <tr>
                             <td>Erros (Difícil)</td>
-                            <td>{countErrosDificil}</td>
+                            <td class="text-center">{countErrosDificil}</td>
                         </tr>
                     </tbody>
                 </table>

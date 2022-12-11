@@ -62,7 +62,8 @@ export default function Recurso() {
                 questao: questao,
                 nivel: dificuldade,
                 resposta: resposta,
-                acerto: acerto
+                acerto: acerto,
+                userId: 1
             })
             .then((response) => {
                 console.log(response.data);
