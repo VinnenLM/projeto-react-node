@@ -18,7 +18,10 @@ class AtividadeController {
       const atividades = await database.Atividades.findAll({
         where: {
           userId: Number(id)
-        }
+        },
+        //include: [{
+        //  model: database.Usuarios
+        //}]
       })
       return res.status(200).json(atividades)
     } catch (error) {
