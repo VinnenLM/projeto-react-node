@@ -39,32 +39,32 @@ export default function Historico() {
             </div>
 
             <div className="containerUsuarios">
-                <table class="table table-bordered">
+                <table className="table table-bordered">
                     <thead>
                         <tr>
-                            <th scope="col" colspan="2" class="text-center">Resumo Atividades</th>
+                            <th scope="col" colSpan="2" className="text-center">Resumo Atividades</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>Atividades Realizadas</td>
-                            <td class="text-center">{countAtividades}</td>
+                            <td className="text-center">{countAtividades}</td>
                         </tr>
                         <tr>
                             <td>Acertos (fácil)</td>
-                            <td class="text-center">{countAcertosFacil}</td>
+                            <td className="text-center">{countAcertosFacil}</td>
                         </tr>
                         <tr>
                             <td>Erros (Fácil)</td>
-                            <td class="text-center">{countErrosFacil}</td>
+                            <td className="text-center">{countErrosFacil}</td>
                         </tr>
                         <tr>
                             <td>Acertos (Difícil)</td>
-                            <td class="text-center">{countAcertosDificil}</td>
+                            <td className="text-center">{countAcertosDificil}</td>
                         </tr>
                         <tr>
                             <td>Erros (Difícil)</td>
-                            <td class="text-center">{countErrosDificil}</td>
+                            <td className="text-center">{countErrosDificil}</td>
                         </tr>
                     </tbody>
                 </table>
