@@ -18,12 +18,53 @@ class AtividadeController {
       const atividades = await database.Atividades.findAll({
         where: {
           userId: Number(id)
-        },
+        }
         //include: [{
         //  model: database.Usuarios
         //}]
+      });
+      const countAtividades = await database.Atividades.count({
+        where: {
+          userId: Number(id),
+        }
       })
-      return res.status(200).json(atividades)
+      const countErrosFacil = await database.Atividades.count({
+        where: {
+          userId: Number(id),
+          acerto: false,
+          nivel: 'fácil'
+        }
+      })
+      const countAcertosFacil = await database.Atividades.count({
+        where: {
+          userId: Number(id),
+          acerto: true,
+          nivel: 'fácil'
+        }
+      })
+      const countErrosDificil = await database.Atividades.count({
+        where: {
+          userId: Number(id),
+          acerto: false,
+          nivel: 'difícil'
+        }
+      })
+      const countAcertosDificil = await database.Atividades.count({
+        where: {
+          userId: Number(id),
+          acerto: true,
+          nivel: 'difícil'
+        }
+      })
+      return res.status(200).json(
+        {
+          atividades,
+          countAtividades,
+          countErrosFacil,
+          countAcertosFacil,
+          countErrosDificil,
+          countAcertosDificil
+        })
     } catch (error) {
       return res.status(500).json(error.message)
     }
