@@ -17,7 +17,7 @@ export default function Desempenho() {
             .catch((error) => {
                 console.log(error);
             })
-    })
+    }, [])
 
     return (
         <div className="cadastro">
