@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router';
 import api from '../../services/api'
 import './style.css'
 
@@ -63,6 +64,8 @@ export default function Alterar() {
                 :
                 null
             }
+
+            {id === null ? <Navigate to='/login' replace /> : null}
 
             <div className='titulo'>
                 <h1>Alterar Dados</h1>
