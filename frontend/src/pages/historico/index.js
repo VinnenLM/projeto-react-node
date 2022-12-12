@@ -27,6 +27,7 @@ export default function Historico() {
             api
                 .get(`/atividades/${idUsuario}`)
                 .then((response) => {
+                    console.log(response);
                     setAtividades(response.data.atividades)
                     setCountAtividades(response.data.countAtividades)
                     setCountErrosFacil(response.data.countErrosFacil)
@@ -44,7 +45,7 @@ export default function Historico() {
     }, [admin, id, idUsuario])
 
     return (
-        <div className="cadastro">
+        <div className="historico">
 
             {estado === true ? (<Navigate push to={`/recurso`} />) : null}
 

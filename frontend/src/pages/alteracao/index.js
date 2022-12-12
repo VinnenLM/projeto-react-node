@@ -1,18 +1,17 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom'
 import api from '../../services/api'
 import './style.css'
 
 export default function Alterar() {
 
     const id = useSelector((state) => state.idUsuario);
+    const admin = useSelector((state) => state.admin);
 
     const [nome, setNome] = useState('')
     const [login, setLogin] = useState('')
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
-    const [estado, setEstado] = useState(false);
     const [msg, setMsg] = useState(false);
 
     useEffect(() => {
@@ -31,15 +30,16 @@ export default function Alterar() {
 
     function atualizarDados() {
         api
-            .put(`/usuarios/${1}`, {
+            .put(`/usuarios/${id}`, {
                 nome: nome,
                 login: login,
                 email: email,
-                senha: senha
+                senha: senha,
+                admin: admin
             })
             .then((response) => {
                 console.log(response.data);
-                setEstado(true)
+                window.location.reload(false);
             })
             .catch((error) => {
                 setMsg(true)
@@ -48,9 +48,7 @@ export default function Alterar() {
     }
 
     return (
-        <div className="cadastro">
-
-            {estado === true ? (<Navigate push to="/" />) : null}
+        <div className="alteracao">
 
             {msg === true ?
                 (<div className="alert alert-danger w-25 mx-auto" role="alert">
