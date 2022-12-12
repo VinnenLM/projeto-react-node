@@ -19,7 +19,8 @@ export default function Cadastro() {
                 nome: nome,
                 login: login,
                 email: email,
-                senha: senha
+                senha: senha,
+                admin: false
             })
             .then((response) => {
                 console.log(response.data);

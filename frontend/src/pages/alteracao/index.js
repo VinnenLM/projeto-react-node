@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom'
 import api from '../../services/api'
 import './style.css'
 
 export default function Alterar() {
+
+    const id = useSelector((state) => state.idUsuario);
 
     const [nome, setNome] = useState('')
     const [login, setLogin] = useState('')
@@ -11,7 +14,6 @@ export default function Alterar() {
     const [senha, setSenha] = useState('')
     const [estado, setEstado] = useState(false);
     const [msg, setMsg] = useState(false);
-    const id = 1;
 
     useEffect(() => {
         api

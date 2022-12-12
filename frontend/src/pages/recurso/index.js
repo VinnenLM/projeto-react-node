@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { Navigate } from "react-router";
 import api from "../../services/api";
 import './style.css'
 
 export default function Recurso() {
+
+    const id = useSelector((state) => state.idUsuario);
 
     const [valor1, setValor1] = useState(0);
     const [valor2, setValor2] = useState(0);
@@ -78,6 +82,8 @@ export default function Recurso() {
         <div className="login">
 
             <h1>Recurso Educacional</h1>
+
+            {id === null ? <Navigate to='/login' replace /> : null}
 
             <div className="containerNivel">
 
