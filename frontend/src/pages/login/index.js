@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import api from '../../services/api';
 import './style.css'
 
 export default function Login() {
+
+    const id = useSelector((state) => state.idUsuario);
 
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
@@ -33,6 +35,7 @@ export default function Login() {
         <div className="login">
 
             {(estado) ? (<Navigate push to="/recurso" />) : null}
+            {(id != null) ? (<Navigate push to="/recurso" />) : null}
 
             <h1>Login</h1>
 

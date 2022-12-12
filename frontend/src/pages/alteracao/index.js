@@ -12,7 +12,8 @@ export default function Alterar() {
     const [login, setLogin] = useState('')
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
-    const [msg, setMsg] = useState(false);
+    const [repetirSenha, setRepetirSenha] = useState('')
+    const [msg, setMsg] = useState('');
 
     useEffect(() => {
         api
@@ -29,30 +30,35 @@ export default function Alterar() {
     }, [id]);
 
     function atualizarDados() {
-        api
-            .put(`/usuarios/${id}`, {
-                nome: nome,
-                login: login,
-                email: email,
-                senha: senha,
-                admin: admin
-            })
-            .then((response) => {
-                console.log(response.data);
-                window.location.reload(false);
-            })
-            .catch((error) => {
-                setMsg(true)
-                console.log(error);
-            })
+
+        if (senha !== repetirSenha) {
+            setMsg('Confirmação de Senha Inválida!')
+        } else {
+            api
+                .put(`/usuarios/${id}`, {
+                    nome: nome,
+                    login: login,
+                    email: email,
+                    senha: senha,
+                    admin: admin
+                })
+                .then((response) => {
+                    console.log(response.data);
+                    window.location.reload(false);
+                })
+                .catch((error) => {
+                    setMsg('Erro ao atualizar dados')
+                    console.log(error);
+                })
+        }
     }
 
     return (
         <div className="alteracao">
 
-            {msg === true ?
+            {msg !== '' ?
                 (<div className="alert alert-danger w-25 mx-auto" role="alert">
-                    Erro ao atualizar o usuário!
+                    {msg}
                 </div>)
                 :
                 null
@@ -72,7 +78,7 @@ export default function Alterar() {
                 <label htmlFor="senha">Senha</label>
                 <input className="form-control" type="password" id="senha" name="senha" value={senha} onChange={(evt) => setSenha(evt.target.value)} placeholder="******" />
                 <label htmlFor="confirmarSenha">Confirmar Senha</label>
-                <input className="form-control" type="password" id="confirmarSenha" placeholder="******" />
+                <input className="form-control" type="password" id="confirmarSenha" value={repetirSenha} onChange={(evt) => setRepetirSenha(evt.target.value)} placeholder="******" />
                 <button onClick={atualizarDados} className="btn btn-primary mt-3">Cadastrar</button>
             </div>
 

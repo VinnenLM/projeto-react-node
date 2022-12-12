@@ -10,26 +10,32 @@ export default function Cadastro() {
     const [login, setLogin] = useState('')
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
+    const [repetirSenha, setRepetirSenha] = useState('')
     const [estado, setEstado] = useState(false);
-    const [msg, setMsg] = useState(false);
+    const [msg, setMsg] = useState('');
 
     function salvarUsuario() {
-        api
-            .post("/usuarios", {
-                nome: nome,
-                login: login,
-                email: email,
-                senha: senha,
-                admin: false
-            })
-            .then((response) => {
-                console.log(response.data);
-                setEstado(true)
-            })
-            .catch((error) => {
-                setMsg(true)
-                console.log(error);
-            })
+
+        if (senha !== repetirSenha) {
+            setMsg('Confirmação de Senha Inválida!')
+        } else {
+            api
+                .post("/usuarios", {
+                    nome: nome,
+                    login: login,
+                    email: email,
+                    senha: senha,
+                    admin: false
+                })
+                .then((response) => {
+                    console.log(response.data);
+                    setEstado(true)
+                })
+                .catch((error) => {
+                    setMsg('Erro ao cadastrar o usuário!')
+                    console.log(error);
+                })
+        }
     }
 
     return (
@@ -37,9 +43,9 @@ export default function Cadastro() {
 
             {estado === true ? (<Navigate push to="/" />) : null}
 
-            {msg === true ?
+            {msg !== '' ?
                 (<div className="alert alert-danger w-25 mx-auto" role="alert">
-                    Erro ao cadastrar o usuário!
+                    {msg}
                 </div>)
                 :
                 null
@@ -59,7 +65,7 @@ export default function Cadastro() {
                 <label htmlFor="senha">Senha</label>
                 <input className="form-control" type="password" id="senha" name="senha" value={senha} onChange={(evt) => setSenha(evt.target.value)} placeholder="******" />
                 <label htmlFor="confirmarSenha">Confirmar Senha</label>
-                <input className="form-control" type="password" id="confirmarSenha" placeholder="******" />
+                <input className="form-control" type="password" id="confirmarSenha" value={repetirSenha} onChange={(evt) => setRepetirSenha(evt.target.value)} placeholder="******" />
                 <button onClick={salvarUsuario} className="btn btn-primary mt-3">Cadastrar</button>
             </div>
 
